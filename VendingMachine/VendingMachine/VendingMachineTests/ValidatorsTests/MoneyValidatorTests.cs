@@ -37,5 +37,15 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             Assert.IsTrue(actual);
         }
+
+        [Test]
+        public void IsValidCoinReturnsTrueForQuarters()
+        {
+            const string quarter = "Quarter";
+
+            var actual = moneyValidator.IsValidCoin(quarter);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
