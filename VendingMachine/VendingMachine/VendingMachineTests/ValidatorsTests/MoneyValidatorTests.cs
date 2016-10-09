@@ -27,5 +27,15 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             Assert.IsFalse(actual);
         }
+
+        [Test]
+        public void IsValidCoinReturnsTrueForDimes()
+        {
+            const string dime = "Dime";
+
+            var actual = moneyValidator.IsValidCoin(dime);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
