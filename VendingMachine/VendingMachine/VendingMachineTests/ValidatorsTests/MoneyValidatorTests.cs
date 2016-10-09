@@ -13,7 +13,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             const string nickel = "Nickel";
 
-            var actual = MoneyValidator.IsValidCoin(nickel);
+            var actual = moneyValidator.IsValidCoin(nickel);
 
             Assert.IsTrue(actual);
         }

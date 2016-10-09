@@ -2,9 +2,11 @@
 {
     public class MoneyValidator
     {
-        public static bool IsValidCoin(string nickel)
+        public bool IsValidCoin(string coin)
         {
-            throw new System.NotImplementedException();
+            if (coin == "Nickel")
+                return true;
+            return false;
         }
     }
 }
