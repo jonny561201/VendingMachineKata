@@ -4,7 +4,7 @@
     {
         public bool IsValidCoin(string coin)
         {
-            if (coin == "Nickel")
+            if (coin == "Nickel" || coin == "Dime")
                 return true;
             return false;
         }
