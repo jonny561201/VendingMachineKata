@@ -9,13 +9,23 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         private MoneyValidator moneyValidator = new MoneyValidator();
 
         [Test]
-        public void ValidateCanAcceptNickels()
+        public void IsValidCoinReturnsTrueForNickels()
         {
             const string nickel = "Nickel";
 
             var actual = moneyValidator.IsValidCoin(nickel);
 
             Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void IsValidCoinReturnsFalseForPennies()
+        {
+            const string penny = "Penny";
+
+            var actual = moneyValidator.IsValidCoin(penny);
+
+            Assert.IsFalse(actual);
         }
     }
 }
