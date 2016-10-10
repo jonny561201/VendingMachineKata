@@ -26,5 +26,16 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             Assert.AreEqual(CoinTypes.Dime, actual);
         }
+
+        [Test]
+        public void IndentifyShouldDetermineNickel()
+        {
+            _diameter = 21.21;
+            _weight = 5;
+
+            var actual = _coinValidator.Identify(_weight, _diameter);
+
+            Assert.AreEqual(CoinTypes.Nickel, actual);
+        }
     }
 }
