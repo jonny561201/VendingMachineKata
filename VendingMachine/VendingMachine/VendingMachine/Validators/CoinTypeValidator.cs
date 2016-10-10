@@ -16,17 +16,16 @@ namespace VendingMachine.VendingMachine.Validators
 
         public CoinTypes Identify(double weight, double diameter)
         {
-            var find = _coins.Find(x => x.Height == diameter && x.Weight == weight);
-            return find.Type;
+            return _coins.Find(x => x.Height == diameter && x.Weight == weight).Type;
         }
     }
 
     public enum CoinTypes
     {
-        Penny = 0,
+        Unknown = 0,
         Nickel = 1,
         Dime = 2,
-        Quarter =3
+        Quarter =3,
     }
 
 
