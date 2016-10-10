@@ -7,7 +7,6 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
     [TestFixture]
     public class CoinTypeValidatorTests
     {
-        private CoinTypeValidator _coinValidator = new CoinTypeValidator();
         private double _diameter;
         private double _weight;
 
