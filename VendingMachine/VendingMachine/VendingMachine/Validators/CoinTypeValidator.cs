@@ -12,11 +12,12 @@ namespace VendingMachine.VendingMachine.Validators
     public class CoinTypeValidator
     {
 
-        private static List<Coin> _coins = new List<Coin> { new Coin(CoinTypes.Dime, 17.91, 2.268) };
+        private static List<Coin> _coins = new List<Coin> { new Coin(CoinTypes.Dime, 17.91, 2.268), new Coin(CoinTypes.Nickel, 5, 21.21) };
 
         public CoinTypes Identify(double weight, double diameter)
         {
-            return _coins.Find(x => x.Height == diameter && x.Weight == weight).Type;
+            var find = _coins.Find(x => x.Height == diameter && x.Weight == weight);
+            return find.Type;
         }
     }
 
