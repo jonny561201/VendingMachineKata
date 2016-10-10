@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework;
+using VendingMachine.Models;
 using VendingMachine.VendingMachine.Validators;
 
 namespace VendingMachine.VendingMachineTests.ValidatorsTests
@@ -22,7 +17,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
             _diameter = 2.268;
             _weight = 17.91;
 
-            var actual = _coinValidator.Identify(_weight, _diameter);
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
             Assert.AreEqual(CoinTypes.Dime, actual);
         }
@@ -33,7 +28,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
             _diameter = 21.21;
             _weight = 5;
 
-            var actual = _coinValidator.Identify(_weight, _diameter);
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
             Assert.AreEqual(CoinTypes.Nickel, actual);
         }
@@ -44,7 +39,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
             _diameter = 24.26;
             _weight = 5.67;
 
-            var actual = _coinValidator.Identify(_weight, _diameter);
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
             Assert.AreEqual(CoinTypes.Quarter, actual);
         }
@@ -55,7 +50,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
             _diameter = 5.64;
             _weight = 7.31;
 
-            var actual = _coinValidator.Identify(_weight, _diameter);
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
             Assert.AreEqual(CoinTypes.Unknown, actual);
         }

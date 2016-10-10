@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CoinTypes.cs" />
     <Compile Include="VendingMachineTests\ValidatorsTests\CoinTypeValidatorTests.cs" />
     <Compile Include="VendingMachineTests\ValidatorsTests\MoneyValidatorTests.cs" />
     <Compile Include="VendingMachine\Validators\CoinTypeValidator.cs" />
