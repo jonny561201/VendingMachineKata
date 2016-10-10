@@ -54,5 +54,16 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             Assert.AreEqual(CoinTypes.Unknown, actual);
         }
+
+        [Test]
+        public void IdentifyShouldRoundTotalsAndStillIdentifyQuarter()
+        {
+            _diameter = 24.2697;
+            _weight = 5.6789;
+
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
+
+            Assert.AreEqual(CoinTypes.Quarter, actual);
+        }
     }
 }
