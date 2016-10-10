@@ -16,7 +16,9 @@ namespace VendingMachine.VendingMachine.Validators
 
         public CoinTypes Identify(double weight, double diameter)
         {
-            return _coins.Find(x => x.Height == diameter && x.Weight == weight).Type;
+            var coinTypes = _coins.FirstOrDefault(x => x.Height == diameter && x.Weight == weight);
+
+            return coinTypes == null ? CoinTypes.Unknown : coinTypes.Type;
         }
     }
 
