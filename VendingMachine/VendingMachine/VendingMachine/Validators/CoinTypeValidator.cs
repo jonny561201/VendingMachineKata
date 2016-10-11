@@ -7,14 +7,13 @@ namespace VendingMachine.VendingMachine.Validators
 {
     public static class CoinTypeValidator
     {
+        private static readonly List<Coin> AllCoins = new List<Coin> {Coin.Penny, Coin.Nickel, Coin.Dime, Coin.Quarter, Coin.HalfDollar, Coin.Dollar, Coin.Unknown}; 
 
-        private static readonly List<Coin> Coins = new List<Coin> { new Coin(CoinTypes.Dime, 17.91, 2.268), new Coin(CoinTypes.Nickel, 5, 21.21), new Coin(CoinTypes.Quarter, 5.67, 24.26) };
-
-        public static CoinTypes Identify(double weight, double diameter)
+        public static Coin Identify(double weight, double diameter)
         {
-            var coinTypes = Coins.FirstOrDefault(x => (Math.Abs(x.Height - diameter) < .001 || Math.Abs(x.Weight - weight) < .01));
+            var coin = AllCoins.SingleOrDefault(x => (Math.Abs(x.Height - diameter) < .001 || Math.Abs(x.Weight - weight) < .01));
 
-            return coinTypes?.Type ?? CoinTypes.Unknown;
+            return coin ?? Coin.Unknown;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using VendingMachine.Models;
 using VendingMachine.VendingMachine.Validators;
 
 namespace VendingMachine.VendingMachineTests.ValidatorsTests
@@ -11,7 +12,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         [Test]
         public void IsValidCoinReturnsTrueForNickels()
         {
-            const string nickel = "Nickel";
+             var nickel = Coin.Nickel;
 
             var actual = moneyValidator.IsValidCoin(nickel);
 
@@ -21,7 +22,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         [Test]
         public void IsValidCoinReturnsFalseForPennies()
         {
-            const string penny = "Penny";
+            var penny = Coin.Penny;
 
             var actual = moneyValidator.IsValidCoin(penny);
 
@@ -31,7 +32,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         [Test]
         public void IsValidCoinReturnsTrueForDimes()
         {
-            const string dime = "Dime";
+            var dime = Coin.Dime;
 
             var actual = moneyValidator.IsValidCoin(dime);
 
@@ -41,7 +42,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         [Test]
         public void IsValidCoinReturnsTrueForQuarters()
         {
-            const string quarter = "Quarter";
+            var quarter = Coin.Quarter;
 
             var actual = moneyValidator.IsValidCoin(quarter);
 

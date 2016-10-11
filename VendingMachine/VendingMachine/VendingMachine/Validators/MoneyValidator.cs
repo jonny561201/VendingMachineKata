@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Validators
 {
     public class MoneyValidator
     {
-        private List<string> _validCoinList = new List<string> { "Nickel", "Dime", "Quarter" };
+        private static List<Coin> _validCoinList = new List<Coin> { Coin.Nickel, Coin.Dime, Coin.Quarter };
 
-        public bool IsValidCoin(string coin)
+        public bool IsValidCoin(Coin coin)
         {
             return _validCoinList.Contains(coin);
         }

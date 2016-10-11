@@ -11,14 +11,16 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         private double _weight;
 
         [Test]
-        public void IdentifyShouldDetermineDime()
+        public void IndentifyShouldReturnPenny()
         {
-            _diameter = 2.268;
-            _weight = 17.91;
+            _diameter = 19.05;
+            _weight = 2.5;
 
             var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
-            Assert.AreEqual(CoinTypes.Dime, actual);
+            Assert.AreEqual(Coin.Penny, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
         }
 
         [Test]
@@ -29,18 +31,61 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
-            Assert.AreEqual(CoinTypes.Nickel, actual);
+            Assert.AreEqual(Coin.Nickel, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
         }
 
         [Test]
-        public void IndentifyShouldDetermineQuarter()
+        public void IdentifyShouldDetermineDime()
+        {
+            _diameter = 17.91;
+            _weight = 2.268;
+
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
+
+            Assert.AreEqual(Coin.Dime, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
+        }
+
+        [Test]
+        public void IndentifyShouldReturnQuarter()
         {
             _diameter = 24.26;
             _weight = 5.67;
 
             var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
-            Assert.AreEqual(CoinTypes.Quarter, actual);
+            Assert.AreEqual(Coin.Quarter, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
+        }
+
+        [Test]
+        public void IdentifyShouldReturnHalfDollar()
+        {
+            _diameter = 30.61;
+            _weight = 11.34;
+
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
+
+            Assert.AreEqual(Coin.HalfDollar, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
+        }
+
+        [Test]
+        public void IdentifyShouldReturnDollar()
+        {
+            _diameter = 26.5;
+            _weight = 8.1;
+
+            var actual = CoinTypeValidator.Identify(_weight, _diameter);
+
+            Assert.AreEqual(Coin.Dollar, actual);
+            Assert.AreEqual(_diameter, actual.Height);
+            Assert.AreEqual(_weight, actual.Weight);
         }
 
         [Test]
@@ -51,7 +96,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
-            Assert.AreEqual(CoinTypes.Unknown, actual);
+            Assert.AreEqual(Coin.Unknown, actual);
         }
 
         [Test]
@@ -62,7 +107,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
 
             var actual = CoinTypeValidator.Identify(_weight, _diameter);
 
-            Assert.AreEqual(CoinTypes.Quarter, actual);
+            Assert.AreEqual(Coin.Quarter, actual);
         }
     }
 }
