@@ -6,14 +6,20 @@ namespace VendingMachine.VendingMachine.Status
 {
     public class StockStatus
     {
-        public static int CandyStock = 0;
+        private static int _candyStock = 0;
+        private static int _popStock = 0;
 
         public static int AddInventory(VendingStock stock, int addedInventory)
         {
             if (stock == VendingStock.Candy)
             {
-                CandyStock += addedInventory;
-                return CandyStock;
+                _candyStock += addedInventory;
+                return _candyStock;
+            }
+            if (stock == VendingStock.Pop)
+            {
+                _popStock += addedInventory;
+                return _popStock;
             }
             return 0;
         }
