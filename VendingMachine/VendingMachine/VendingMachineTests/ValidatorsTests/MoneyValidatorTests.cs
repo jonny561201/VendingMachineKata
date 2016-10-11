@@ -7,14 +7,14 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
     [TestFixture]
     public class MoneyValidatorTests
     {
-        private MoneyValidator moneyValidator = new MoneyValidator();
+        private readonly MoneyValidator _moneyValidator = new MoneyValidator();
 
         [Test]
         public void IsValidCoinReturnsTrueForNickels()
         {
              var nickel = Coin.Nickel;
 
-            var actual = moneyValidator.IsValidCoin(nickel);
+            var actual = _moneyValidator.IsValidCoin(nickel);
 
             Assert.IsTrue(actual);
         }
@@ -24,7 +24,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             var penny = Coin.Penny;
 
-            var actual = moneyValidator.IsValidCoin(penny);
+            var actual = _moneyValidator.IsValidCoin(penny);
 
             Assert.IsFalse(actual);
         }
@@ -34,7 +34,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             var dime = Coin.Dime;
 
-            var actual = moneyValidator.IsValidCoin(dime);
+            var actual = _moneyValidator.IsValidCoin(dime);
 
             Assert.IsTrue(actual);
         }
@@ -44,7 +44,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             var quarter = Coin.Quarter;
 
-            var actual = moneyValidator.IsValidCoin(quarter);
+            var actual = _moneyValidator.IsValidCoin(quarter);
 
             Assert.IsTrue(actual);
         }
