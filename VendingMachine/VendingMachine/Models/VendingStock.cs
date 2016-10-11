@@ -13,7 +13,7 @@
             Pop = new VendingStock(1.00m);
         }
 
-        public decimal Cost;
+        public readonly decimal Cost;
 
         private VendingStock(decimal cost)
         {
