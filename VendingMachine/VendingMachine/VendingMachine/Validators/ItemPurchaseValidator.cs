@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VendingMachine.Models;
+﻿using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Validators
 {
-    public class ItemPurchaseValidator
+    public static class ItemPurchaseValidator
     {
-        public bool CanPurchase(VendingStock stock, decimal amount)
+        public static bool CanPurchase(VendingStock stock, decimal amount)
         {
             return amount >= stock.Cost;
         }
