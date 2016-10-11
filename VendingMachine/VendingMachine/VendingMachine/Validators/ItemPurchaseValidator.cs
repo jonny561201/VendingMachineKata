@@ -11,7 +11,7 @@ namespace VendingMachine.VendingMachine.Validators
     {
         public bool CanPurchase(VendingStock stock, decimal amount)
         {
-            throw new NotImplementedException();
+            return amount >= stock.Cost;
         }
     }
 }
