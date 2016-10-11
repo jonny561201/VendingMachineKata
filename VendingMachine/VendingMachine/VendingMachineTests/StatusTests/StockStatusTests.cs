@@ -22,6 +22,14 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.AreEqual(5, actual);
         }
+
+        [Test]
+        public void AddInventoryIncreasesTotalChipsStock()
+        {
+            var actual = StockStatus.AddInventory(VendingStock.Chips, 9);
+
+            Assert.AreEqual(9, actual);
+        }
     }
 
 }
