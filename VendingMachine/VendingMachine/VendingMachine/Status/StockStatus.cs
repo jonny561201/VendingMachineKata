@@ -40,7 +40,9 @@ namespace VendingMachine.VendingMachine.Status
 
         public static bool HasAvailableItem(VendingStock item)
         {
-            throw new NotImplementedException();
+            var stockItem = Stock.Single(x => x.Item == item);
+
+            return stockItem.AvailableStock > 1;
         }
     }
 }
