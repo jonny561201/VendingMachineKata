@@ -58,5 +58,13 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.IsTrue(actual);
         }
+
+        [Test]
+        public void HasAvaialbleItemReturnsFalseWhenStockIsZero()
+        {
+            var actual = StockStatus.HasAvailableItem(VendingStock.Pop);
+
+            Assert.IsFalse(actual);
+        }
     }
 }
