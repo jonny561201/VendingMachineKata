@@ -7,10 +7,18 @@ namespace VendingMachine.VendingMachineTests.StatusTests
     [TestFixture]
     public class StockStatusTests
     {
+        private StockStatus _stockStatus;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _stockStatus = new StockStatus();
+        }
+
         [Test]
         public void AddInventoryIncreasesTotalCandyStock()
         {
-            var actual = StockStatus.AddInventory(VendingStock.Candy, 2);
+            var actual = _stockStatus.AddInventory(VendingStock.Candy, 2);
 
             Assert.AreEqual(2, actual);
         }
@@ -18,7 +26,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void AddInventoryIncreasesTotalPopStock()
         {
-            var actual = StockStatus.AddInventory(VendingStock.Pop, 5);
+            var actual = _stockStatus.AddInventory(VendingStock.Pop, 5);
 
             Assert.AreEqual(5, actual);
         }
@@ -26,7 +34,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void AddInventoryIncreasesTotalChipsStock()
         {
-            var actual = StockStatus.AddInventory(VendingStock.Chips, 9);
+            var actual = _stockStatus.AddInventory(VendingStock.Chips, 9);
 
             Assert.AreEqual(9, actual);
         }
@@ -34,9 +42,9 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void PurchaseItemWillRemoveOneItemFromInventory()
         {
-            StockStatus.AddInventory(VendingStock.Candy, 3);
+            _stockStatus.AddInventory(VendingStock.Candy, 3);
 
-            var actual = StockStatus.PurchaseItem(VendingStock.Candy);
+            var actual = _stockStatus.PurchaseItem(VendingStock.Candy);
 
             Assert.AreEqual(2, actual);
         }
@@ -44,8 +52,8 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvailableItemReturnsTrueWhenStockIsGreaterThanOne()
         {
-            StockStatus.AddInventory(VendingStock.Pop, 2);
-            var actual = StockStatus.HasAvailableItem(VendingStock.Pop);
+            _stockStatus.AddInventory(VendingStock.Pop, 2);
+            var actual = _stockStatus.HasAvailableItem(VendingStock.Pop);
 
             Assert.IsTrue(actual);
         }
@@ -53,8 +61,8 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvailableItemReturnsTrueWhenStockIsOne()
         {
-            StockStatus.AddInventory(VendingStock.Chips, 1);
-            var actual = StockStatus.HasAvailableItem(VendingStock.Chips);
+            _stockStatus.AddInventory(VendingStock.Chips, 1);
+            var actual = _stockStatus.HasAvailableItem(VendingStock.Chips);
 
             Assert.IsTrue(actual);
         }
@@ -62,7 +70,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvaialbleItemReturnsFalseWhenStockIsZero()
         {
-            var actual = StockStatus.HasAvailableItem(VendingStock.Pop);
+            var actual = _stockStatus.HasAvailableItem(VendingStock.Pop);
 
             Assert.IsFalse(actual);
         }
@@ -71,7 +79,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void HasFundsAvailableReturnsTrueWhenFundsAreGreaterThanRequired()
         {
             var funds = 1.25m;
-            var actual = StockStatus.HasFundsAvailable(VendingStock.Candy, funds);
+            var actual = _stockStatus.HasFundsAvailable(VendingStock.Candy, funds);
 
             Assert.IsTrue(actual);
         }
@@ -80,7 +88,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void HasFundsAvailableReturnsTrueWhenFundsAreEqual()
         {
             var funds = 0.50m;
-            var actual = StockStatus.HasFundsAvailable(VendingStock.Chips, funds);
+            var actual = _stockStatus.HasFundsAvailable(VendingStock.Chips, funds);
 
             Assert.IsTrue(actual);
         }

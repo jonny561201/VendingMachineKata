@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.PerformanceData;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Status
@@ -10,35 +7,35 @@ namespace VendingMachine.VendingMachine.Status
     public class StockStatus
     {
 
-        private static readonly List<StockItem> Stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)}; 
+        private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)}; 
 
-        public static int AddInventory(VendingStock stock, int addedInventory)
+        public int AddInventory(VendingStock stock, int addedInventory)
         {
-            var stockItem = Stock.Single(x => x.Item == stock);
+            var stockItem = _stock.Single(x => x.Item == stock);
             AddInventory(stockItem, addedInventory);
 
             return stockItem.AvailableStock;
         }
 
-        public static int PurchaseItem(VendingStock stock)
+        public int PurchaseItem(VendingStock stock)
         {
-            var stockItem = Stock.Single(x => x.Item == stock);
-            PurcahseInventory(stockItem);
+            var stockItem = _stock.Single(x => x.Item == stock);
+            PurchaseInventory(stockItem);
 
             return stockItem.AvailableStock;
         }
 
-        public static bool HasAvailableItem(VendingStock item)
+        public bool HasAvailableItem(VendingStock item)
         {
-            return Stock.Single(x => x.Item == item).AvailableStock > 1;
+            return _stock.Single(x => x.Item == item).AvailableStock >= 1;
         }
 
-        public static bool HasFundsAvailable(VendingStock item, decimal funds)
+        public bool HasFundsAvailable(VendingStock item, decimal funds)
         {
-            return Stock.Single(x => x.Item == item).Item.Cost < funds;
+            return _stock.Single(x => x.Item == item).Item.Cost <= funds;
         }
 
-        private static void PurcahseInventory(StockItem item)
+        private static void PurchaseInventory(StockItem item)
         {
             item.AvailableStock -= 1;
         }
