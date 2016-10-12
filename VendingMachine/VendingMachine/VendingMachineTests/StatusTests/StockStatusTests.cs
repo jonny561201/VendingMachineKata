@@ -30,6 +30,16 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.AreEqual(9, actual);
         }
+
+        [Test]
+        public void PurchaseItemWillRemoveOneItemFromInventory()
+        {
+            StockStatus.AddInventory(VendingStock.Candy, 3);
+
+            var actual = StockStatus.PurchaseItem(VendingStock.Candy);
+
+            Assert.AreEqual(2, actual);
+        }
     }
 
 }
