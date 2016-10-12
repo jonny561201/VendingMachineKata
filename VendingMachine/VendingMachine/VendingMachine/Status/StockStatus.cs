@@ -15,19 +15,27 @@ namespace VendingMachine.VendingMachine.Status
         public static int AddInventory(VendingStock stock, int addedInventory)
         {
             var stockItem = Stock.Single(x => x.Item == stock);
-            UpdateInventory(stockItem, addedInventory);
+            AddInventory(stockItem, addedInventory);
 
             return stockItem.AvailableStock;
         }
 
-        private static void UpdateInventory(StockItem item, int additionalInventory)
-        {
-            item.AvailableStock += additionalInventory;
-        }
-
         public static int PurchaseItem(VendingStock stock)
         {
-            throw new NotImplementedException();
+            var stockItem = Stock.Single(x => x.Item == stock);
+            PurcahseInventory(stockItem);
+
+            return stockItem.AvailableStock;
+        }
+
+        private static void PurcahseInventory(StockItem item)
+        {
+            item.AvailableStock -= 1;
+        }
+
+        private static void AddInventory(StockItem item, int additionalInventory)
+        {
+            item.AvailableStock += additionalInventory;
         }
     }
 }
