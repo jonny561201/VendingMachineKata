@@ -40,6 +40,14 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.AreEqual(2, actual);
         }
-    }
 
+        [Test]
+        public void HasAvailableItemReturnsTrueWhenStockIsGreaterThanOne()
+        {
+            StockStatus.AddInventory(VendingStock.Pop, 2);
+            var actual = StockStatus.HasAvailableItem(VendingStock.Pop);
+
+            Assert.IsTrue(actual);
+        }
+    }
 }

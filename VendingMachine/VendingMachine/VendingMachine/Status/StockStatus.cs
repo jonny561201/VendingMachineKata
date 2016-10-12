@@ -37,5 +37,10 @@ namespace VendingMachine.VendingMachine.Status
         {
             item.AvailableStock += additionalInventory;
         }
+
+        public static bool HasAvailableItem(VendingStock item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
