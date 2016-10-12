@@ -49,5 +49,14 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.IsTrue(actual);
         }
+
+        [Test]
+        public void HasAvailableItemReturnsTrueWhenStockIsOne()
+        {
+            StockStatus.AddInventory(VendingStock.Chips, 1);
+            var actual = StockStatus.HasAvailableItem(VendingStock.Chips);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
