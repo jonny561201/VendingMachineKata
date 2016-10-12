@@ -28,6 +28,18 @@ namespace VendingMachine.VendingMachine.Status
             return stockItem.AvailableStock;
         }
 
+        public static bool HasAvailableItem(VendingStock item)
+        {
+            var stockItem = Stock.Single(x => x.Item == item);
+
+            return stockItem.AvailableStock >= 1;
+        }
+
+        public static bool HasFundsAvailable(VendingStock candy, decimal funds)
+        {
+            throw new NotImplementedException();
+        }
+
         private static void PurcahseInventory(StockItem item)
         {
             item.AvailableStock -= 1;
@@ -36,13 +48,6 @@ namespace VendingMachine.VendingMachine.Status
         private static void AddInventory(StockItem item, int additionalInventory)
         {
             item.AvailableStock += additionalInventory;
-        }
-
-        public static bool HasAvailableItem(VendingStock item)
-        {
-            var stockItem = Stock.Single(x => x.Item == item);
-
-            return stockItem.AvailableStock >= 1;
         }
     }
 }

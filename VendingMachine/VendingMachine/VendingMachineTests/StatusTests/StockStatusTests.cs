@@ -66,5 +66,14 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             Assert.IsFalse(actual);
         }
+
+        [Test]
+        public void HasFundsAvailableReturnsTrueWhenFundsAreGreaterThanRequired()
+        {
+            var funds = 1.25m;
+            var actual = StockStatus.HasFundsAvailable(VendingStock.Candy, funds);
+
+            Assert.IsTrue(actual);
+        }
     }
 }
