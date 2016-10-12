@@ -42,7 +42,7 @@ namespace VendingMachine.VendingMachine.Status
         {
             var stockItem = Stock.Single(x => x.Item == item);
 
-            return stockItem.AvailableStock > 1;
+            return stockItem.AvailableStock >= 1;
         }
     }
 }
