@@ -54,14 +54,13 @@
   <ItemGroup>
     <Compile Include="Models\Coins.cs" />
     <Compile Include="Models\VendingStock.cs" />
+    <Compile Include="Models\StockItem.cs" />
     <Compile Include="VendingMachine\Status\StockStatus.cs" />
     <Compile Include="VendingMachineTests\StatusTests\StockStatusTests.cs" />
     <Compile Include="VendingMachineTests\ValidatorsTests\CoinTypeValidatorTests.cs" />
     <Compile Include="VendingMachineTests\ValidatorsTests\ItemPurchaseValidatorTests.cs" />
-    <Compile Include="VendingMachineTests\ValidatorsTests\MoneyValidatorTests.cs" />
     <Compile Include="VendingMachine\Validators\CoinTypeValidator.cs" />
     <Compile Include="VendingMachine\Validators\ItemPurchaseValidator.cs" />
-    <Compile Include="VendingMachine\Validators\MoneyValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
