@@ -30,14 +30,12 @@ namespace VendingMachine.VendingMachine.Status
 
         public static bool HasAvailableItem(VendingStock item)
         {
-            var stockItem = Stock.Single(x => x.Item == item);
-
-            return stockItem.AvailableStock >= 1;
+            return Stock.Single(x => x.Item == item).AvailableStock > 1;
         }
 
-        public static bool HasFundsAvailable(VendingStock candy, decimal funds)
+        public static bool HasFundsAvailable(VendingStock item, decimal funds)
         {
-            throw new NotImplementedException();
+            return Stock.Single(x => x.Item == item).Item.Cost < funds;
         }
 
         private static void PurcahseInventory(StockItem item)
