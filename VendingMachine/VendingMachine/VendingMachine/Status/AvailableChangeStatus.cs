@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VendingMachine.Models;
+﻿using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Status
 {
     public class AvailableChangeStatus
     {
-        public decimal DepositChange(VendingStock stock)
+        private decimal _totalChange;
+
+        public decimal DepositChange(decimal amount)
         {
-            throw new NotImplementedException();
+            return _totalChange += amount;
         }
     }
 }

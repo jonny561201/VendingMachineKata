@@ -16,7 +16,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
             _changeStatus = new AvailableChangeStatus();
             _stock = VendingStock.Pop;
 
-            var actual = _changeStatus.DepositChange(_stock);
+            var actual = _changeStatus.DepositChange(_stock.Cost);
 
             Assert.AreEqual(_stock.Cost, actual);
         }
