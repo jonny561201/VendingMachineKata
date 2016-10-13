@@ -6,14 +6,16 @@ namespace VendingMachine.VendingMachine.Controllers
 {
     public class SelectItemController
     {
+        private readonly IStockPurchaseValidator _itemValidator;
+
         public SelectItemController(IStockPurchaseValidator itemValidator)
         {
-            throw new NotImplementedException();
+            _itemValidator = itemValidator;
         }
 
-        public string Select(VendingStock vendingStock, decimal tenderedAmount)
+        public void Select(VendingStock vendingStock, decimal tenderedAmount)
         {
-            throw new NotImplementedException();
+            _itemValidator.CanPurchase(vendingStock, tenderedAmount);
         }
     }
 }

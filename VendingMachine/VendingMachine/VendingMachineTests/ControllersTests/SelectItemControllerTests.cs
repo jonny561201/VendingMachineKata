@@ -24,6 +24,5 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
 
             _itemValidator.Verify(x => x.CanPurchase(stock, tenderedAmount));
         }
-
     }
 }
