@@ -13,7 +13,7 @@ namespace VendingMachine.VendingMachine.Status
 
         public decimal MakeChange(decimal cost, decimal insertedAmount)
         {
-            throw new System.NotImplementedException();
+            return insertedAmount - cost;
         }
     }
 }
