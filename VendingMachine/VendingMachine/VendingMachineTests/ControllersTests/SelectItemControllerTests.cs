@@ -27,23 +27,37 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
         public void SelectWillNotCallPurchaseItemWhenNoItemAvailable()
         {
             _stockStatus.Setup(x => x.HasAvailableItem(_stock)).Returns(false);
+            _itemValidator.Setup(x => x.CanPurchase(_stock, TenderedAmount)).Returns(true);
 
             _controller.Select(_stock, TenderedAmount);
 
             _stockStatus.Verify(x => x.HasAvailableItem(_stock), Times.Once);
-            _itemValidator.Verify(x => x.CanPurchase(_stock, TenderedAmount), Times.Once);
             _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Never);
         }
 
         [Test]
-        public void SelectWillNotCallPurchaseItemWhenHaveAvailableFunds()
+        public void SelectWillNotCallPurchaseItemWhenDontHaveAvailableFunds()
         {
             _stockStatus.Setup(x => x.HasAvailableItem(_stock)).Returns(true);
             _itemValidator.Setup(x => x.CanPurchase(_stock, TenderedAmount)).Returns(false);
 
             _controller.Select(_stock, TenderedAmount);
 
+            _itemValidator.Verify(x => x.CanPurchase(_stock, TenderedAmount), Times.Once);
             _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Never);
+        }
+
+        [Test]
+        public void SelectWillCallPurchaseITemWhenFundAndItemAvailable()
+        {
+            _stockStatus.Setup(x => x.HasAvailableItem(_stock)).Returns(true);
+            _itemValidator.Setup(x => x.CanPurchase(_stock, TenderedAmount)).Returns(true);
+
+            _controller.Select(_stock, TenderedAmount);
+
+            _itemValidator.Verify(x => x.CanPurchase(_stock, TenderedAmount), Times.Once);
+            _stockStatus.Verify(x => x.HasAvailableItem(_stock), Times.Once);
+            _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Once);
         }
     }
 }

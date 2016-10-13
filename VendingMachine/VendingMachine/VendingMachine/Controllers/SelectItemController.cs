@@ -18,12 +18,10 @@ namespace VendingMachine.VendingMachine.Controllers
 
         public void Select(VendingStock vendingStock, decimal tenderedAmount)
         {
-            if (_stockStatus.HasAvailableItem(vendingStock))
+            if (_stockStatus.HasAvailableItem(vendingStock) && _itemValidator.CanPurchase(vendingStock, tenderedAmount))
             {
                 _stockStatus.PurchaseItem(vendingStock);
             }
-
-            _itemValidator.CanPurchase(vendingStock, tenderedAmount);
         }
     }
 }
