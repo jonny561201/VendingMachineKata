@@ -32,5 +32,17 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             CollectionAssert.AreEquivalent(expectedResults, actual);
         }
+
+        [Test]
+        public void MakeChangeWillReturnChangeInHighestDenominatonsPossible()
+        {
+            _stock = VendingStock.Chips;
+            var insertedAmount = 1.25m;
+            var expectedResults = new List<Coin> {Coin.Quarter, Coin.Quarter, Coin.Quarter};
+
+            var actual = _changeStatus.MakeChange(_stock.Cost, insertedAmount);
+
+            CollectionAssert.AreEquivalent(expectedResults, actual);
+        }
     }
 }
