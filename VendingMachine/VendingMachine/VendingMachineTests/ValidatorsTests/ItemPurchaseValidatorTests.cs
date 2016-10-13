@@ -8,13 +8,14 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
     public class ItemPurchaseValidatorTests
     {
         private decimal _amount;
+        private readonly IStockPurchaseValidator _purchaseValidator = new ItemPurchaseValidator();
 
         [Test]
         public void CanPurchaseReturnsTrueWithCorrectChangeForPop()
         {
             _amount = 1.00m;
 
-            var actual = ItemPurchaseValidator.CanPurchase(VendingStock.Pop, _amount);
+            var actual = _purchaseValidator.CanPurchase(VendingStock.Pop, _amount);
 
             Assert.IsTrue(actual);
         }
@@ -24,7 +25,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             _amount = 0.55m;
 
-            var actual = ItemPurchaseValidator.CanPurchase(VendingStock.Chips, _amount);
+            var actual = _purchaseValidator.CanPurchase(VendingStock.Chips, _amount);
 
             Assert.IsTrue(actual);
         }
@@ -34,7 +35,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             _amount = 0.75m;
 
-            var actual = ItemPurchaseValidator.CanPurchase(VendingStock.Candy, _amount);
+            var actual = _purchaseValidator.CanPurchase(VendingStock.Candy, _amount);
 
             Assert.IsTrue(actual);
         }
@@ -44,7 +45,7 @@ namespace VendingMachine.VendingMachineTests.ValidatorsTests
         {
             _amount = 0.25m;
 
-            var actual = ItemPurchaseValidator.CanPurchase(VendingStock.Pop, _amount);
+            var actual = _purchaseValidator.CanPurchase(VendingStock.Pop, _amount);
 
             Assert.IsFalse(actual);
         }

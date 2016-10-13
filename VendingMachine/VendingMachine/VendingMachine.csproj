@@ -55,6 +55,8 @@
     <Compile Include="Models\Coins.cs" />
     <Compile Include="Models\VendingStock.cs" />
     <Compile Include="Models\StockItem.cs" />
+    <Compile Include="VendingMachineTests\ControllersTests\SelectItemControllerTests.cs" />
+    <Compile Include="VendingMachine\Controllers\SelectItemController.cs" />
     <Compile Include="VendingMachine\Status\StockStatus.cs" />
     <Compile Include="VendingMachineTests\StatusTests\StockStatusTests.cs" />
     <Compile Include="VendingMachineTests\ValidatorsTests\CoinTypeValidatorTests.cs" />

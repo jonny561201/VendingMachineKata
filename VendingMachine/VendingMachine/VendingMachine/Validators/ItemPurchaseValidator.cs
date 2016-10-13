@@ -2,9 +2,14 @@
 
 namespace VendingMachine.VendingMachine.Validators
 {
-    public static class ItemPurchaseValidator
+    public interface IStockPurchaseValidator
     {
-        public static bool CanPurchase(VendingStock stock, decimal amount)
+        bool CanPurchase(VendingStock stock, decimal amount);
+    }
+
+    public class ItemPurchaseValidator : IStockPurchaseValidator
+    {
+        public bool CanPurchase(VendingStock stock, decimal amount)
         {
             return amount >= stock.Cost;
         }
