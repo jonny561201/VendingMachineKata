@@ -1,5 +1,6 @@
 ﻿using System;
 using VendingMachine.Models;
+using VendingMachine.VendingMachine.Status;
 using VendingMachine.VendingMachine.Validators;
 
 namespace VendingMachine.VendingMachine.Controllers
@@ -8,7 +9,7 @@ namespace VendingMachine.VendingMachine.Controllers
     {
         private readonly IStockPurchaseValidator _itemValidator;
 
-        public SelectItemController(IStockPurchaseValidator itemValidator)
+        public SelectItemController(IStockPurchaseValidator itemValidator, IStockStatus stockStatus)
         {
             _itemValidator = itemValidator;
         }
