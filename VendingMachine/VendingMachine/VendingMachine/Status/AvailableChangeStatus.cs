@@ -10,5 +10,10 @@ namespace VendingMachine.VendingMachine.Status
         {
             return _totalChange += amount;
         }
+
+        public decimal MakeChange(decimal cost, decimal insertedAmount)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
