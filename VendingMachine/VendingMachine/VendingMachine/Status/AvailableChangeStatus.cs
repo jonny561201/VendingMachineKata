@@ -15,7 +15,7 @@ namespace VendingMachine.VendingMachine.Status
             return _totalChange += amount;
         }
 
-        public List<Coin> MakeChange(decimal cost, decimal insertedAmount)
+        public static IEnumerable<Coin> MakeChange(decimal cost, decimal insertedAmount)
         {
             var change = insertedAmount - cost;
             var coinsToReturn = new List<Coin>();
@@ -24,8 +24,11 @@ namespace VendingMachine.VendingMachine.Status
             {
                 if (change - coin.Value >= 0 && coin.IsValidTender)
                 {
-                    change -= coin.Value;
-                    coinsToReturn.Add(coin);
+                    while (change >= coin.Value)
+                    {
+                        change -= coin.Value;
+                        coinsToReturn.Add(coin);
+                    }
                 }
             }
 
