@@ -20,6 +20,8 @@ namespace VendingMachine.VendingMachine.Controllers
         {
             _stockStatus.HasAvailableItem(vendingStock);
             _itemValidator.CanPurchase(vendingStock, tenderedAmount);
+
+            _stockStatus.PurchaseItem(vendingStock);
         }
     }
 }
