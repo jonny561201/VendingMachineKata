@@ -8,7 +8,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
     [TestFixture]
     public class AvailableChangeStatusTests
     {
-        private AvailableChangeStatus _changeStatus = new AvailableChangeStatus();
+        private readonly AvailableChangeStatus _changeStatus = new AvailableChangeStatus();
         private VendingStock _stock;
 
         [Test]

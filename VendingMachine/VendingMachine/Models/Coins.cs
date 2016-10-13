@@ -4,6 +4,7 @@ namespace VendingMachine.Models
 {
     public class Coin
     {
+        public static List<Coin> AllCoins { get; }
         public static Coin Penny { get; }
         public static Coin Nickel { get; }
         public static Coin Dime { get; }
@@ -21,6 +22,7 @@ namespace VendingMachine.Models
             HalfDollar = new Coin(11.34, 30.61, 0.50m, false);
             Dollar = new Coin(8.1, 26.5, 1.00m, false);
             Unknown = new Coin(0, 0, 0.0m, false);
+            AllCoins = new List<Coin> { Penny, Nickel, Dime, Quarter, HalfDollar, Dollar, Unknown};
         }
 
         public double Weight { get; }
