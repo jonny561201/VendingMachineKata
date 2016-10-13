@@ -1,4 +1,6 @@
-﻿using VendingMachine.Models;
+﻿using System;
+using System.Collections.Generic;
+using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Status
 {
@@ -11,9 +13,9 @@ namespace VendingMachine.VendingMachine.Status
             return _totalChange += amount;
         }
 
-        public decimal MakeChange(decimal cost, decimal insertedAmount)
+        public List<Coin> MakeChange(decimal cost, decimal insertedAmount)
         {
-            return insertedAmount - cost;
+            throw new NotImplementedException();
         }
     }
 }

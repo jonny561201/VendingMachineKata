@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using VendingMachine.Models;
 using VendingMachine.VendingMachine.Status;
 
@@ -21,13 +22,15 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         }
 
         [Test]
-        public void MakeChangeWillReturnModulusOfInsertedValue()
+        public void MakeChangeWillReturnModulusOfInsertedValueInCorrectDenominations()
         {
             _stock = VendingStock.Candy;
             var insertedAmount = 1.00m;
+            var expectedResults = new List<Coin> {Coin.Quarter, Coin.Dime };
+
             var actual = _changeStatus.MakeChange(_stock.Cost, insertedAmount);
 
-            Assert.AreEqual(0.35m, actual);
+            CollectionAssert.AreEquivalent(expectedResults, actual);
         }
     }
 }
