@@ -33,5 +33,15 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
             _itemValidator.Verify(x => x.CanPurchase(_stock, TenderedAmount), Times.Once);
             _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Once);
         }
+
+        [Test]
+        public void SelectWillNotCallPurchaseItemWhenNoItemAvailable()
+        {
+            _stockStatus.Setup(x => x.HasAvailableItem(_stock)).Returns(false);
+
+            _controller.Select(_stock, TenderedAmount);
+
+            _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Never);
+        }
     }
 }
