@@ -15,7 +15,7 @@ namespace VendingMachine.Repository
 
         public List<Coin> AddAvailableFunds(List<Coin> coins)
         {
-            _availableFunds = coins;
+            _availableFunds.AddRange(coins);
             return _availableFunds;
         }
 
