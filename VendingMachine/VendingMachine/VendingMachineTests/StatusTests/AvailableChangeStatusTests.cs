@@ -59,21 +59,23 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void AddChangeWillIncreaseTheInventoryOfChangeToReturn()
         {
             var coins = new List<Coin> {Coin.Quarter, Coin.Dime, Coin.Nickel, Coin.Quarter};
+            _returnRepo.Setup(x => x.AddAvailableFunds(coins)).Returns(coins);
+
             var actual = _changeStatus.AddChange(coins);
 
-            Assert.AreEqual(coins, actual);
+            _returnRepo.Verify(x => x.AddAvailableFunds(coins), Times.Once);
         }
 
-        [Test]
-        public void AddChangeCalledTwiceWillAppendInventory()
-        {
-            var coins = new List<Coin> {Coin.Dime, Coin.Dime};
-            var expectedCoins = new List<Coin> {Coin.Dime, Coin.Dime, Coin.Dime, Coin.Dime};
-
-            _changeStatus.AddChange(coins);
-            var actual = _changeStatus.AddChange(coins);
-
-            Assert.AreEqual(expectedCoins, actual);
-        }
+//        [Test]
+//        public void AddChangeCalledTwiceWillAppendInventory()
+//        {
+//            var coins = new List<Coin> {Coin.Dime, Coin.Dime};
+//            var expectedCoins = new List<Coin> {Coin.Dime, Coin.Dime, Coin.Dime, Coin.Dime};
+//
+//            _changeStatus.AddChange(coins);
+//            var actual = _changeStatus.AddChange(coins);
+//
+//            Assert.AreEqual(expectedCoins, actual);
+//        }
     }
 }
