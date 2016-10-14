@@ -10,15 +10,32 @@ namespace VendingMachine.VendingMachineTests.RepositoryTests
     {
         private AvailableReturnFundsRepository _fundsRepo;
 
+        [SetUp]
+        public void SetUp()
+        {
+            _fundsRepo = new AvailableReturnFundsRepository();
+        }
+
         [Test]
         public void AddAvailableFundsWillIncreaseInventory()
         {
-            _fundsRepo = new AvailableReturnFundsRepository();
             var coins = new List<Coin> { Coin.Nickel };
 
             var actual = _fundsRepo.AddAvailableFunds(coins);
 
             Assert.AreEqual(coins, actual);
+        }
+
+        [Test]
+        public void AddAvailableFundsCalledTwiceWillAppendInventory()
+        {
+            var coins = new List<Coin> { Coin.Dime, Coin.Dime };
+            var expectedCoins = new List<Coin> { Coin.Dime, Coin.Dime, Coin.Dime, Coin.Dime };
+
+            _fundsRepo.AddAvailableFunds(coins);
+            var actual = _fundsRepo.AddAvailableFunds(coins);
+
+            Assert.AreEqual(expectedCoins, actual);
         }
     }
 }
