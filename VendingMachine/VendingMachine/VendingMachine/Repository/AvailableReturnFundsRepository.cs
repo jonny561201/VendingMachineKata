@@ -15,6 +15,9 @@ namespace VendingMachine.Repository
 
         public List<Coin> AddAvailableFunds(List<Coin> coins)
         {
+            if (coins == null)
+                return _availableFunds;
+
             _availableFunds.AddRange(coins);
             return _availableFunds;
         }
