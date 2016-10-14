@@ -32,6 +32,11 @@ namespace VendingMachine.VendingMachine.Status
 
             return coinsToReturn;
         }
+
+        public static List<Coin> AddChange(List<Coin> coins)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }
