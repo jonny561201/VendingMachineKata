@@ -2,19 +2,17 @@
 using System.Linq;
 using VendingMachine.Models;
 using VendingMachine.Repository;
-using VendingMachine.VendingMachineTests.StatusTests;
 
 namespace VendingMachine.VendingMachine.Status
 {
     public class AvailableChangeStatus
     {
         private decimal _totalChange;
-        private readonly IAvailableReturnFundsRepo _returnRepo;
-        private readonly List<Coin> _availableReturnFund = new List<Coin>();
+        private readonly IAvailableReturnFundsRepo _returnFundsRepo;
 
-        public AvailableChangeStatus(IAvailableReturnFundsRepo returnRepo)
+        public AvailableChangeStatus(IAvailableReturnFundsRepo returnFundsRepo)
         {
-            _returnRepo = returnRepo;
+            _returnFundsRepo = returnFundsRepo;
         }
 
         public decimal DepositChange(decimal amount)
@@ -41,10 +39,9 @@ namespace VendingMachine.VendingMachine.Status
             return coinsToReturn;
         }
 
-        public List<Coin> AddChange(List<Coin> coins)
+        public IEnumerable<Coin> AddChange(List<Coin> coins)
         {
-            _availableReturnFund.AddRange(coins);
-            return _availableReturnFund;
+            return _returnFundsRepo.AddAvailableFunds(coins);
         }
     }
 
