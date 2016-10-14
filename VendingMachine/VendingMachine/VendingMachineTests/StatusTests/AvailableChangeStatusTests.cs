@@ -49,7 +49,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void AddChangeWillIncreaseTheInventoryOfChangeToReturn()
         {
             var coins = new List<Coin> {Coin.Quarter, Coin.Dime, Coin.Nickel, Coin.Quarter};
-            var actual = AvailableChangeStatus.AddChange(coins);
+            var actual = _changeStatus.AddChange(coins);
 
             Assert.AreEqual(coins, actual);
         }

@@ -6,6 +6,7 @@ namespace VendingMachine.VendingMachine.Status
 {
     public class AvailableChangeStatus
     {
+        private List<Coin> _availableReturnFund; 
         private decimal _totalChange;
 
         public decimal DepositChange(decimal amount)
@@ -33,9 +34,9 @@ namespace VendingMachine.VendingMachine.Status
             return coinsToReturn;
         }
 
-        public static List<Coin> AddChange(List<Coin> coins)
+        public List<Coin> AddChange(List<Coin> coins)
         {
-            throw new System.NotImplementedException();
+            return _availableReturnFund = coins;
         }
     }
 
