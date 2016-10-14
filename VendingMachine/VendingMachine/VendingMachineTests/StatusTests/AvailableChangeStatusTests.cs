@@ -65,17 +65,5 @@ namespace VendingMachine.VendingMachineTests.StatusTests
 
             _returnRepo.Verify(x => x.AddAvailableFunds(coins), Times.Once);
         }
-
-//        [Test]
-//        public void AddChangeCalledTwiceWillAppendInventory()
-//        {
-//            var coins = new List<Coin> {Coin.Dime, Coin.Dime};
-//            var expectedCoins = new List<Coin> {Coin.Dime, Coin.Dime, Coin.Dime, Coin.Dime};
-//
-//            _changeStatus.AddChange(coins);
-//            var actual = _changeStatus.AddChange(coins);
-//
-//            Assert.AreEqual(expectedCoins, actual);
-//        }
     }
 }
