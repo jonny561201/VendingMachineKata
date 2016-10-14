@@ -57,6 +57,7 @@
     <Compile Include="Models\StockItem.cs" />
     <Compile Include="VendingMachineTests\ControllersTests\SelectItemControllerTests.cs" />
     <Compile Include="VendingMachineTests\StatusTests\AvailableChangeStatusTests.cs" />
+    <Compile Include="Repository\AvailableReturnFundsRepository.cs" />
     <Compile Include="VendingMachine\Controllers\SelectItemController.cs" />
     <Compile Include="VendingMachine\Status\AvailableChangeStatus.cs" />
     <Compile Include="VendingMachine\Status\StockStatus.cs" />

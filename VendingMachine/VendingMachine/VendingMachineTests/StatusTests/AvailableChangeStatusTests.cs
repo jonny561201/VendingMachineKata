@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using VendingMachine.Models;
+using VendingMachine.Repository;
 using VendingMachine.VendingMachine.Status;
 
 namespace VendingMachine.VendingMachineTests.StatusTests
@@ -8,8 +10,16 @@ namespace VendingMachine.VendingMachineTests.StatusTests
     [TestFixture]
     public class AvailableChangeStatusTests
     {
-        private readonly AvailableChangeStatus _changeStatus = new AvailableChangeStatus();
         private VendingStock _stock;
+        private AvailableChangeStatus _changeStatus;
+        private Mock<IAvailableReturnFundsRepo> _returnRepo;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _returnRepo = new Mock<IAvailableReturnFundsRepo>();
+            _changeStatus = new AvailableChangeStatus(_returnRepo.Object);
+        }
 
         [Test]
         public void DepositChangeWillIncreaseTotalAvailableChangeByStockCost()
