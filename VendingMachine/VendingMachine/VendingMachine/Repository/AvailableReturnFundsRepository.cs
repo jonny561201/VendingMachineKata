@@ -11,9 +11,12 @@ namespace VendingMachine.Repository
 
     public class AvailableReturnFundsRepository : IAvailableReturnFundsRepo
     {
+        private List<Coin> _availableFunds = new List<Coin>(); 
+
         public List<Coin> AddAvailableFunds(List<Coin> coins)
         {
-            throw new System.NotImplementedException();
+            _availableFunds = coins;
+            return _availableFunds;
         }
 
         public List<Coin> FindAvailableFunds()
