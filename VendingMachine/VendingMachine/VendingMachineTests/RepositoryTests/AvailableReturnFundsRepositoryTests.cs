@@ -37,5 +37,15 @@ namespace VendingMachine.VendingMachineTests.RepositoryTests
 
             Assert.AreEqual(expectedCoins, actual);
         }
+
+        [Test]
+        public void AddAvailableFundsWillReturnNewListWhenNull()
+        {
+            var actual = _fundsRepo.AddAvailableFunds(null);
+
+            CollectionAssert.AreEquivalent(new List<Coin>(), actual);
+        }
+
+        //Add null to list with items already included
     }
 }
