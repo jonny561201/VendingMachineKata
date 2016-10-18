@@ -38,7 +38,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
             var insertedAmount = 1.00m;
             var expectedResults = new List<Coin> {Coin.Quarter, Coin.Dime };
 
-            var actual = AvailableChangeStatus.MakeChange(_stock.Cost, insertedAmount);
+            var actual = _changeStatus.MakeChange(_stock.Cost, insertedAmount);
 
             CollectionAssert.AreEquivalent(expectedResults, actual);
         }
@@ -50,7 +50,7 @@ namespace VendingMachine.VendingMachineTests.StatusTests
             var insertedAmount = 1.25m;
             var expectedResults = new List<Coin> {Coin.Quarter, Coin.Quarter, Coin.Quarter};
 
-            var actual = AvailableChangeStatus.MakeChange(_stock.Cost, insertedAmount);
+            var actual = _changeStatus.MakeChange(_stock.Cost, insertedAmount);
 
             CollectionAssert.AreEquivalent(expectedResults, actual);
         }

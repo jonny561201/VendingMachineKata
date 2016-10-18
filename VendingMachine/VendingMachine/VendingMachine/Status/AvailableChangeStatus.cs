@@ -5,7 +5,14 @@ using VendingMachine.Repository;
 
 namespace VendingMachine.VendingMachine.Status
 {
-    public class AvailableChangeStatus
+    public interface IAvailableChangeStatus
+    {
+        decimal DepositChange(decimal amount);
+        IEnumerable<Coin> MakeChange(decimal cost, decimal insertedAmount);
+        IEnumerable<Coin> AddChange(List<Coin> coins);
+    }
+
+    public class AvailableChangeStatus : IAvailableChangeStatus
     {
         private decimal _totalChange;
         private readonly IAvailableReturnFundsRepo _returnFundsRepo;
@@ -20,7 +27,7 @@ namespace VendingMachine.VendingMachine.Status
             return _totalChange += amount;
         }
 
-        public static IEnumerable<Coin> MakeChange(decimal cost, decimal insertedAmount)
+        public IEnumerable<Coin> MakeChange(decimal cost, decimal insertedAmount)
         {
             var change = insertedAmount - cost;
             var coinsToReturn = new List<Coin>();
