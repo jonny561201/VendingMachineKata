@@ -1,5 +1,4 @@
-﻿using System;
-using VendingMachine.Models;
+﻿using VendingMachine.Models;
 using VendingMachine.VendingMachine.Status;
 using VendingMachine.VendingMachine.Validators;
 
@@ -22,6 +21,8 @@ namespace VendingMachine.VendingMachine.Controllers
         {
             if (_stockStatus.HasAvailableItem(vendingStock) && _itemValidator.CanPurchase(vendingStock, tenderedAmount))
             {
+                _changeStatus.DepositChange(vendingStock.Cost);
+                _changeStatus.MakeChange(vendingStock.Cost, tenderedAmount);
                 _stockStatus.PurchaseItem(vendingStock);
             }
         }
