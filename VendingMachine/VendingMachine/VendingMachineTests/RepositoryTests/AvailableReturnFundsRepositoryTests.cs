@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using VendingMachine.Models;
-using VendingMachine.Repository;
+using VendingMachine.VendingMachine.Repository;
 
 namespace VendingMachine.VendingMachineTests.RepositoryTests
 {

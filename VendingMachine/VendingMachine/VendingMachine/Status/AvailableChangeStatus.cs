@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using VendingMachine.Models;
-using VendingMachine.Repository;
+using VendingMachine.VendingMachine.Repository;
 
 namespace VendingMachine.VendingMachine.Status
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using VendingMachine.Models;
 
-namespace VendingMachine.Repository
+namespace VendingMachine.VendingMachine.Repository
 {
     public interface IAvailableReturnFundsRepo
     {

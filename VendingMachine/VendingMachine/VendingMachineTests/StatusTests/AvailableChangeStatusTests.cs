@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using VendingMachine.Models;
-using VendingMachine.Repository;
+using VendingMachine.VendingMachine.Repository;
 using VendingMachine.VendingMachine.Status;
 
 namespace VendingMachine.VendingMachineTests.StatusTests
