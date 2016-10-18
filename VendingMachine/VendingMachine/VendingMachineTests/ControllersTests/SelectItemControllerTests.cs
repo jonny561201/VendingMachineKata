@@ -11,7 +11,8 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
     public class SelectItemControllerTests
     {
         private SelectItemController _controller;
-        private Mock<IStockStatus> _stockStatus; 
+        private Mock<IStockStatus> _stockStatus;
+        private Mock<IAvailableChangeStatus> _changeStatus; 
         private Mock<IStockPurchaseValidator> _itemValidator;
         private readonly VendingStock _stock = VendingStock.Candy;
         private const decimal TenderedAmount = 0.65m;
@@ -19,9 +20,10 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
         [SetUp]
         public void SetUp()
         {
-            _itemValidator = new Mock<IStockPurchaseValidator>();
             _stockStatus = new Mock<IStockStatus>();
-            _controller = new SelectItemController(_itemValidator.Object, _stockStatus.Object);
+            _changeStatus = new Mock<IAvailableChangeStatus>();
+            _itemValidator = new Mock<IStockPurchaseValidator>();
+            _controller = new SelectItemController(_itemValidator.Object, _stockStatus.Object, _changeStatus.Object);
         }
         [Test]
         public void SelectWillNotCallPurchaseItemWhenNoItemAvailable()
@@ -50,14 +52,18 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
         [Test]
         public void SelectWillCallPurchaseITemWhenFundAndItemAvailable()
         {
-            _stockStatus.Setup(x => x.HasAvailableItem(_stock)).Returns(true);
-            _itemValidator.Setup(x => x.CanPurchase(_stock, TenderedAmount)).Returns(true);
+            var tenderedAmount = 0.75m;
+            var stock = VendingStock.Chips;
+            _stockStatus.Setup(x => x.HasAvailableItem(stock)).Returns(true);
+            _itemValidator.Setup(x => x.CanPurchase(stock, tenderedAmount)).Returns(true);
 
-            _controller.Select(_stock, TenderedAmount);
+            _controller.Select(stock, tenderedAmount);
 
-            _itemValidator.Verify(x => x.CanPurchase(_stock, TenderedAmount), Times.Once);
-            _stockStatus.Verify(x => x.HasAvailableItem(_stock), Times.Once);
-            _stockStatus.Verify(x => x.PurchaseItem(_stock), Times.Once);
+            _changeStatus.Verify(x => x.MakeChange(stock.Cost, tenderedAmount), Times.Once);
+            _changeStatus.Verify(x => x.DepositChange(stock.Cost), Times.Once);
+            _itemValidator.Verify(x => x.CanPurchase(stock, tenderedAmount), Times.Once);
+            _stockStatus.Verify(x => x.HasAvailableItem(stock), Times.Once);
+            _stockStatus.Verify(x => x.PurchaseItem(stock), Times.Once);
         }
     }
 }

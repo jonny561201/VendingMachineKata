@@ -7,13 +7,15 @@ namespace VendingMachine.VendingMachine.Controllers
 {
     public class SelectItemController
     {
-        private readonly IStockPurchaseValidator _itemValidator;
         private readonly IStockStatus _stockStatus;
+        private readonly IAvailableChangeStatus _changeStatus;
+        private readonly IStockPurchaseValidator _itemValidator;
 
-        public SelectItemController(IStockPurchaseValidator itemValidator, IStockStatus stockStatus)
+        public SelectItemController(IStockPurchaseValidator itemValidator, IStockStatus stockStatus, IAvailableChangeStatus changeStatus)
         {
             _itemValidator = itemValidator;
             _stockStatus = stockStatus;
+            _changeStatus = changeStatus;
         }
 
         public void Select(VendingStock vendingStock, decimal tenderedAmount)
