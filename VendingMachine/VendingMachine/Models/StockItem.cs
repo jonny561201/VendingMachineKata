@@ -1,6 +1,4 @@
-using VendingMachine.Models;
-
-namespace VendingMachine.VendingMachine.Status
+namespace VendingMachine.Models
 {
     public class StockItem
     {
