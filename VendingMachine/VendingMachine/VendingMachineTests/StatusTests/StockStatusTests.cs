@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using VendingMachine.Models;
 using VendingMachine.VendingMachine.Repository;
@@ -31,7 +32,9 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvailableItemReturnsTrueWhenStockIsGreaterThanOne()
         {
-            _stockStatus.AddInventory(VendingStock.Pop, 2);
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 2) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
+
             var actual = _stockStatus.HasAvailableItem(VendingStock.Pop);
 
             Assert.IsTrue(actual);
@@ -40,7 +43,8 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvailableItemReturnsTrueWhenStockIsOne()
         {
-            _stockStatus.AddInventory(VendingStock.Chips, 1);
+            var stockItems = new List<StockItem> {new StockItem(VendingStock.Chips, 2)};
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
             var actual = _stockStatus.HasAvailableItem(VendingStock.Chips);
 
             Assert.IsTrue(actual);
@@ -49,6 +53,8 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         [Test]
         public void HasAvaialbleItemReturnsFalseWhenStockIsZero()
         {
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 0) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
             var actual = _stockStatus.HasAvailableItem(VendingStock.Pop);
 
             Assert.IsFalse(actual);
