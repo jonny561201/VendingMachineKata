@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using VendingMachine.Models;
 using VendingMachine.VendingMachine.Repository;
 
@@ -17,7 +15,6 @@ namespace VendingMachine.VendingMachine.Status
     {
         private const int ReduceStock = 1;
         private readonly IVendingStockRepository _vendingStockRepository;
-        private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)};
 
         public StockStatus(IVendingStockRepository vendingStockRepository)
         {
@@ -48,7 +45,8 @@ namespace VendingMachine.VendingMachine.Status
 
         public bool HasFundsAvailable(VendingStock item, decimal funds)
         {
-            return _stock.Single(x => x.Item == item).Item.Cost <= funds;
+            var stock = _vendingStockRepository.GetInventory();
+            return stock.Single(x => x.Item == item).Item.Cost <= funds;
         }
     }
 }

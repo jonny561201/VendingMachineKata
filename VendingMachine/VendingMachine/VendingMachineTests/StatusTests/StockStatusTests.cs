@@ -45,6 +45,18 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         }
 
         [Test]
+        public void VendingStockRepoHasAvailableFundsShouldBeCalled()
+        {
+            var stock = VendingStock.Pop;
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 1) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
+
+            _stockStatus.HasFundsAvailable(stock, 1.00m);
+
+            _stockRepo.Verify(x => x.GetInventory(), Times.Once);
+        }
+
+        [Test]
         public void VendingStockRepoGetInventoryShouldBeCalled()
         {
             var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 1) };
@@ -90,6 +102,8 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void HasFundsAvailableReturnsTrueWhenFundsAreGreaterThanRequired()
         {
             var funds = 1.25m;
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Candy, 0) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
             var actual = _stockStatus.HasFundsAvailable(VendingStock.Candy, funds);
 
             Assert.IsTrue(actual);
@@ -99,6 +113,9 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void HasFundsAvailableReturnsTrueWhenFundsAreEqual()
         {
             var funds = 0.50m;
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Chips, 0) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
+
             var actual = _stockStatus.HasFundsAvailable(VendingStock.Chips, funds);
 
             Assert.IsTrue(actual);
