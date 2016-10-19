@@ -56,6 +56,7 @@
     <Compile Include="Models\VendingStock.cs" />
     <Compile Include="Models\StockItem.cs" />
     <Compile Include="VendingMachineTests\ControllersTests\SelectItemControllerTests.cs" />
+    <Compile Include="VendingMachineTests\ModelsTests\StockItemTests.cs" />
     <Compile Include="VendingMachineTests\RepositoryTests\AvailableReturnFundsRepositoryTests.cs" />
     <Compile Include="VendingMachineTests\RepositoryTests\VendingStockRepositoryTests.cs" />
     <Compile Include="VendingMachineTests\StatusTests\AvailableChangeStatusTests.cs" />
