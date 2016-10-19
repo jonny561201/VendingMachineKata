@@ -66,5 +66,16 @@ namespace VendingMachine.VendingMachineTests.RepositoryTests
 
             CollectionAssert.AreEquivalent(expectedStock, actual);
         }
+
+        [Test]
+        public void ReduceStockWillReduceListOfPopStockByTwo()
+        {
+            var expectedStock = new List<StockItem> { new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 5) };
+
+            _stockRepo.AddInventory(VendingStock.Pop, 7);
+            var actual = _stockRepo.ReduceStock(VendingStock.Pop, 2);
+
+            CollectionAssert.AreEquivalent(expectedStock, actual);
+        }
     }
 }
