@@ -22,9 +22,12 @@ namespace VendingMachine.VendingMachine.Repository
             return _stock;
         }
 
-        public IEnumerable<StockItem> ReduceStock(VendingStock candy, int reduceAmount)
+        public IEnumerable<StockItem> ReduceStock(VendingStock item, int reduceAmount)
         {
-            throw new System.NotImplementedException();
+            var stockItem = _stock.Single(x => x.Item == item);
+            stockItem.AvailableStock -= reduceAmount;
+
+            return _stock;
         }
     }
 }
