@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using VendingMachine.Models;
 using VendingMachine.VendingMachine.Repository;
-using VendingMachine.VendingMachine.Status;
 
 namespace VendingMachine.VendingMachineTests.RepositoryTests
 {
@@ -17,7 +12,7 @@ namespace VendingMachine.VendingMachineTests.RepositoryTests
         public void GetInventoryWillReturnListOfCurrentStock()
         {
             var stockRepo = new VendingStockRepository();
-            var expectedStock = new List<StockItem>{};
+            var expectedStock = new List<StockItem> { new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0) };
 
             var totalStock = stockRepo.GetInventory();
 

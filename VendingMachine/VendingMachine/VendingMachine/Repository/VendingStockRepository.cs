@@ -11,7 +11,7 @@ namespace VendingMachine.VendingMachine.Repository
 {
     public class VendingStockRepository
     {
-        private readonly List<StockItem> _stock = new List<StockItem> {  };
+        private readonly List<StockItem> _stock = new List<StockItem> { new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0) };
 
         public IEnumerable<StockItem> GetInventory()
         {
