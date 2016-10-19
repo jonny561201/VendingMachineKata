@@ -30,6 +30,16 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         }
 
         [Test]
+        public void VendingStockRepoGetInventoryShouldBeCalled()
+        {
+            var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 1) };
+            _stockRepo.Setup(x => x.GetInventory()).Returns(stockItems);
+            _stockStatus.HasAvailableItem(VendingStock.Pop);
+
+            _stockRepo.Verify(x => x.GetInventory(), Times.Once);
+        }
+
+        [Test]
         public void HasAvailableItemReturnsTrueWhenStockIsGreaterThanOne()
         {
             var stockItems = new List<StockItem> { new StockItem(VendingStock.Pop, 2) };
