@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VendingMachine.Models;
-using VendingMachine.VendingMachine.Status;
 
 namespace VendingMachine.VendingMachine.Repository
 {
@@ -16,6 +11,11 @@ namespace VendingMachine.VendingMachine.Repository
         public IEnumerable<StockItem> GetInventory()
         {
             return _stock;
+        }
+
+        public IEnumerable<StockItem> AddInventory(VendingStock pop, int addedInventory)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
