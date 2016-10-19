@@ -10,12 +10,12 @@ namespace VendingMachine.VendingMachineTests.StatusTests
     public class StockStatusTests
     {
         private StockStatus _stockStatus;
-        private Mock<VendingStockRepository> _stockRepo;
+        private Mock<IVendingStockRepository> _stockRepo;
 
         [SetUp]
         public void SetUp()
         {
-            _stockRepo = new Mock<VendingStockRepository>();
+            _stockRepo = new Mock<IVendingStockRepository>();
             _stockStatus = new StockStatus(_stockRepo.Object);
         }
 

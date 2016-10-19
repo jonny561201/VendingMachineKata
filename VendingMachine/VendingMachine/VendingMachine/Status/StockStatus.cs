@@ -14,11 +14,12 @@ namespace VendingMachine.VendingMachine.Status
 
     public class StockStatus : IStockStatus
     {
+        private readonly IVendingStockRepository _vendingStockRepository;
         private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)};
 
-        public StockStatus(VendingStockRepository vendingStockRepository)
+        public StockStatus(IVendingStockRepository vendingStockRepository)
         {
-            throw new System.NotImplementedException();
+            _vendingStockRepository = vendingStockRepository;
         }
 
         public int AddInventory(VendingStock stock, int addedInventory)

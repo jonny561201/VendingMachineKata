@@ -8,7 +8,7 @@ namespace VendingMachine.VendingMachineTests.RepositoryTests
     [TestFixture]
     public class VendingStockRepositoryTests
     {
-        private VendingStockRepository _stockRepo;
+        private IVendingStockRepository _stockRepo;
 
         [SetUp]
         public void SetUp()

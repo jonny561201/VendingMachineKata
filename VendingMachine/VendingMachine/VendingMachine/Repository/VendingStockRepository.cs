@@ -5,7 +5,14 @@ using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Repository
 {
-    public class VendingStockRepository
+    public interface IVendingStockRepository
+    {
+        IEnumerable<StockItem> GetInventory();
+        IEnumerable<StockItem> AddInventory(VendingStock item, int addedInventory);
+        IEnumerable<StockItem> ReduceStock(VendingStock item, int reduceAmount);
+    }
+
+    public class VendingStockRepository : IVendingStockRepository
     {
         private readonly List<StockItem> _stock = new List<StockItem> { new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0) };
 
