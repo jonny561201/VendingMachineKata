@@ -15,6 +15,7 @@ namespace VendingMachine.VendingMachine.Status
 
     public class StockStatus : IStockStatus
     {
+        private const int ReduceStock = 1;
         private readonly IVendingStockRepository _vendingStockRepository;
         private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)};
 
@@ -25,16 +26,16 @@ namespace VendingMachine.VendingMachine.Status
 
         public int AddInventory(VendingStock stock, int addedInventory)
         {
-            var stockItem = _stock.Single(x => x.Item == stock);
-            _vendingStockRepository.AddInventory(stockItem.Item, addedInventory);
+            var stockItems = _vendingStockRepository.AddInventory(stock, addedInventory);
+            var stockItem = stockItems.Single(x => x.Item == stock);
 
             return stockItem.AvailableStock;
         }
 
         public int PurchaseItem(VendingStock stock)
         {
-            var stockItem = _stock.Single(x => x.Item == stock);
-            PurchaseInventory(stockItem);
+            var stockItems = _vendingStockRepository.ReduceStock(stock, ReduceStock);
+            var stockItem = stockItems.Single(x => x.Item == stock);
 
             return stockItem.AvailableStock;
         }
@@ -48,16 +49,6 @@ namespace VendingMachine.VendingMachine.Status
         public bool HasFundsAvailable(VendingStock item, decimal funds)
         {
             return _stock.Single(x => x.Item == item).Item.Cost <= funds;
-        }
-
-        private static void PurchaseInventory(StockItem item)
-        {
-            item.AvailableStock -= 1;
-        }
-
-        private static void AddInventory(StockItem item, int additionalInventory)
-        {
-            item.AvailableStock += additionalInventory;
         }
     }
 }

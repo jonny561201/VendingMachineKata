@@ -24,6 +24,9 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         public void VendingStockRepoAddInventoryShouldBeCalled()
         {
             var stock = VendingStock.Pop;
+            var stockItems = new List<StockItem> {new StockItem(VendingStock.Pop, 2)};
+            _stockRepo.Setup(x => x.AddInventory(stock, 2)).Returns(stockItems);
+
             _stockStatus.AddInventory(stock, 2);
 
             _stockRepo.Verify(x => x.AddInventory(stock, 2), Times.Once);
