@@ -21,5 +21,10 @@ namespace VendingMachine.VendingMachine.Repository
 
             return _stock;
         }
+
+        public IEnumerable<StockItem> ReduceStock(VendingStock candy, int reduceAmount)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
