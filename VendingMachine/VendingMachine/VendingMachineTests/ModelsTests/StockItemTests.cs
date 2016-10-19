@@ -8,7 +8,7 @@ namespace VendingMachine.VendingMachineTests.ModelsTests
     public class StockItemTests
     {
         [Test]
-        public void EqualsWillReturnTrueWhenPropertiesMatch()
+        public void EqualsReturnTrueWhenPropertiesMatch()
         {
             var stock1 = new StockItem(VendingStock.Candy, 1);
             var stock2 = new StockItem(VendingStock.Candy, 1);
@@ -16,5 +16,23 @@ namespace VendingMachine.VendingMachineTests.ModelsTests
             Assert.AreEqual(stock1, stock2);
         }
 
+        [Test]
+        public void EqualsReturnsFalseWhenPropertiesDontMatch()
+        {
+            var stock1 = new StockItem(VendingStock.Candy, 1);
+            var stock2 = new StockItem(VendingStock.Chips, 0);
+
+            Assert.AreNotEqual(stock1, stock2);
+        }
+
+        [Test]
+        public void EqualsReturnsFalseWhenOnePropertyDoesntMatch()
+        {
+            var stock1 = new StockItem(VendingStock.Pop, 3);
+            var stock2 = new StockItem(VendingStock.Chips, 3);
+
+            Assert.AreNotEqual(stock1, stock2);
+        }
     }
 }
+
