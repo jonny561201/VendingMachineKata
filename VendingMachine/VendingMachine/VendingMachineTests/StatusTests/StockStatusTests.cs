@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using VendingMachine.Models;
+using VendingMachine.VendingMachine.Repository;
 using VendingMachine.VendingMachine.Status;
 
 namespace VendingMachine.VendingMachineTests.StatusTests
@@ -8,45 +10,22 @@ namespace VendingMachine.VendingMachineTests.StatusTests
     public class StockStatusTests
     {
         private StockStatus _stockStatus;
+        private Mock<VendingStockRepository> _stockRepo;
 
         [SetUp]
         public void SetUp()
         {
-            _stockStatus = new StockStatus();
+            _stockRepo = new Mock<VendingStockRepository>();
+            _stockStatus = new StockStatus(_stockRepo.Object);
         }
 
         [Test]
-        public void AddInventoryIncreasesTotalCandyStock()
+        public void VendingStockRepoAddInventoryShouldBeCalled()
         {
-            var actual = _stockStatus.AddInventory(VendingStock.Candy, 2);
+            var stock = VendingStock.Pop;
+            _stockStatus.AddInventory(stock, 2);
 
-            Assert.AreEqual(2, actual);
-        }
-
-        [Test]
-        public void AddInventoryIncreasesTotalPopStock()
-        {
-            var actual = _stockStatus.AddInventory(VendingStock.Pop, 5);
-
-            Assert.AreEqual(5, actual);
-        }
-
-        [Test]
-        public void AddInventoryIncreasesTotalChipsStock()
-        {
-            var actual = _stockStatus.AddInventory(VendingStock.Chips, 9);
-
-            Assert.AreEqual(9, actual);
-        }
-
-        [Test]
-        public void PurchaseItemWillRemoveOneItemFromInventory()
-        {
-            _stockStatus.AddInventory(VendingStock.Candy, 3);
-
-            var actual = _stockStatus.PurchaseItem(VendingStock.Candy);
-
-            Assert.AreEqual(2, actual);
+            _stockRepo.Verify(x => x.AddInventory(stock, 2), Times.Once);
         }
 
         [Test]

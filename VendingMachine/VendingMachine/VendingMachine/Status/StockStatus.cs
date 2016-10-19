@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using VendingMachine.Models;
+using VendingMachine.VendingMachine.Repository;
 
 namespace VendingMachine.VendingMachine.Status
 {
@@ -13,7 +14,12 @@ namespace VendingMachine.VendingMachine.Status
 
     public class StockStatus : IStockStatus
     {
-        private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)}; 
+        private readonly List<StockItem> _stock = new List<StockItem> {new StockItem(VendingStock.Candy, 0), new StockItem(VendingStock.Chips, 0), new StockItem(VendingStock.Pop, 0)};
+
+        public StockStatus(VendingStockRepository vendingStockRepository)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public int AddInventory(VendingStock stock, int addedInventory)
         {
