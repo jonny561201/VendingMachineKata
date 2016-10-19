@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using VendingMachine.Models;
 
 namespace VendingMachine.VendingMachine.Repository
@@ -13,9 +14,12 @@ namespace VendingMachine.VendingMachine.Repository
             return _stock;
         }
 
-        public IEnumerable<StockItem> AddInventory(VendingStock pop, int addedInventory)
+        public IEnumerable<StockItem> AddInventory(VendingStock item, int addedInventory)
         {
-            throw new System.NotImplementedException();
+            var stockItem = _stock.Single(x => x.Item == item);
+            stockItem.AvailableStock += addedInventory;
+
+            return _stock;
         }
     }
 }
