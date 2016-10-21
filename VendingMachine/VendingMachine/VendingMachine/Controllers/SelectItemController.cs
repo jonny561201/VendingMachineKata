@@ -26,7 +26,7 @@ namespace VendingMachine.VendingMachine.Controllers
                 _stockStatus.PurchaseItem(vendingStock);
                 return "THANK YOU";
             }
-            return "";
+            return "SOLD OUT";
         }
     }
 }
