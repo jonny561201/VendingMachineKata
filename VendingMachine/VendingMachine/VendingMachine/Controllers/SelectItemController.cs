@@ -19,12 +19,16 @@ namespace VendingMachine.VendingMachine.Controllers
 
         public string SelectItemForPurchase(VendingStock vendingStock, decimal tenderedAmount)
         {
-            if (_stockStatus.HasAvailableItem(vendingStock) && _itemValidator.CanPurchase(vendingStock, tenderedAmount))
+            if (_stockStatus.HasAvailableItem(vendingStock))
             {
-                _changeStatus.DepositChange(vendingStock.Cost);
-                _changeStatus.MakeChange(vendingStock.Cost, tenderedAmount);
-                _stockStatus.PurchaseItem(vendingStock);
-                return "THANK YOU";
+                if (_itemValidator.CanPurchase(vendingStock, tenderedAmount))
+                {
+                    _changeStatus.DepositChange(vendingStock.Cost);
+                    _changeStatus.MakeChange(vendingStock.Cost, tenderedAmount);
+                    _stockStatus.PurchaseItem(vendingStock);
+                    return "THANK YOU";
+                }
+                return string.Format("PRICE ${0}", vendingStock.Cost);
             }
             return "SOLD OUT";
         }
