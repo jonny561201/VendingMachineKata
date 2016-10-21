@@ -17,7 +17,7 @@ namespace VendingMachine.VendingMachine.Controllers
             _changeStatus = changeStatus;
         }
 
-        public void Select(VendingStock vendingStock, decimal tenderedAmount)
+        public string SelectItemForPurchase(VendingStock vendingStock, decimal tenderedAmount)
         {
             if (_stockStatus.HasAvailableItem(vendingStock) && _itemValidator.CanPurchase(vendingStock, tenderedAmount))
             {
@@ -25,6 +25,7 @@ namespace VendingMachine.VendingMachine.Controllers
                 _changeStatus.MakeChange(vendingStock.Cost, tenderedAmount);
                 _stockStatus.PurchaseItem(vendingStock);
             }
+            return "";
         }
     }
 }

@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Coins.cs" />
-    <Compile Include="Models\VendingStock.cs" />
-    <Compile Include="Models\StockItem.cs" />
+    <Compile Include="VendingMachine\Models\Coins.cs" />
+    <Compile Include="VendingMachine\Models\VendingStock.cs" />
+    <Compile Include="VendingMachine\Models\StockItem.cs" />
     <Compile Include="VendingMachineTests\ControllersTests\SelectItemControllerTests.cs" />
     <Compile Include="VendingMachineTests\ModelsTests\StockItemTests.cs" />
     <Compile Include="VendingMachineTests\RepositoryTests\AvailableReturnFundsRepositoryTests.cs" />
