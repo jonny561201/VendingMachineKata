@@ -56,12 +56,12 @@ namespace VendingMachine.VendingMachineTests.StatusTests
         }
 
         [Test]
-        public void AddChangeWillIncreaseTheInventoryOfChangeToReturn()
+        public void IncreaseCoinReturnInventoryWillIncreaseTheInventoryOfChangeToReturn()
         {
             var coins = new List<Coin> {Coin.Quarter, Coin.Dime, Coin.Nickel, Coin.Quarter};
             _returnRepo.Setup(x => x.AddAvailableFunds(coins)).Returns(coins);
 
-            var actual = _changeStatus.AddChange(coins);
+            var actual = _changeStatus.IncreaseCoinReturnInventory(coins);
 
             _returnRepo.Verify(x => x.AddAvailableFunds(coins), Times.Once);
         }

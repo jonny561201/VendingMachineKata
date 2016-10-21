@@ -9,7 +9,7 @@ namespace VendingMachine.VendingMachine.Status
     {
         decimal DepositChange(decimal amount);
         IEnumerable<Coin> MakeChange(decimal cost, decimal insertedAmount);
-        IEnumerable<Coin> AddChange(List<Coin> coins);
+        IEnumerable<Coin> IncreaseCoinReturnInventory(List<Coin> coins);
     }
 
     public class AvailableChangeStatus : IAvailableChangeStatus
@@ -44,9 +44,10 @@ namespace VendingMachine.VendingMachine.Status
                 }
             }
             return coinsToReturn;
+            //needs to check to see if the coins required are available still
         }
 
-        public IEnumerable<Coin> AddChange(List<Coin> coins)
+        public IEnumerable<Coin> IncreaseCoinReturnInventory(List<Coin> coins)
         {
             return _returnFundsRepo.AddAvailableFunds(coins);
         }
