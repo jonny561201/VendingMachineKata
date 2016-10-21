@@ -24,6 +24,7 @@ namespace VendingMachine.VendingMachine.Controllers
                 _changeStatus.DepositChange(vendingStock.Cost);
                 _changeStatus.MakeChange(vendingStock.Cost, tenderedAmount);
                 _stockStatus.PurchaseItem(vendingStock);
+                return "THANK YOU";
             }
             return "";
         }
