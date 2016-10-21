@@ -91,5 +91,18 @@ namespace VendingMachine.VendingMachineTests.ControllersTests
 
             Assert.AreEqual("SOLD OUT", actual);
         }
+
+        [Test]
+        public void SelectItemForPurchaseWillReturnPriceOfItemWhenNotEnoughFundsProvided()
+        {
+            var tenderedAmount = 0.75m;
+            var stock = VendingStock.Pop;
+            _stockStatus.Setup(x => x.HasAvailableItem(stock)).Returns(true);
+            _itemValidator.Setup(x => x.CanPurchase(stock, tenderedAmount)).Returns(false);
+
+            var actual = _controller.SelectItemForPurchase(stock, tenderedAmount);
+
+            Assert.AreEqual("PRICE $1.00", actual);
+        }
     }
 }
